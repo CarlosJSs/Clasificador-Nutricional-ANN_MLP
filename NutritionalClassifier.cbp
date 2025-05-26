@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="NutritionalClassifier" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/NutritionalClassifier" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-g" />
+					<Add directory="C:/opencv/myBUILD/install/include" />
+					<Add directory="C:/opencv/myBUILD/install/include/opencv2" />
+					<Add directory="C:/Users/carlo/vcpkg/installed/x64-mingw-static/include" />
+				</Compiler>
+				<Linker>
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_aruco420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_bgsegm420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_bioinspired420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_calib3d420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_ccalib420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_core420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_datasets420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_dnn_objdetect420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_dnn_superres420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_dnn420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_dpm420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_face420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_features2d420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_flann420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_fuzzy420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_gapi420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_hfs420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_highgui420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_img_hash420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_imgcodecs420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_imgproc420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_intensity_transform420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_line_descriptor420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_ml420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_objdetect420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_optflow420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_phase_unwrapping420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_photo420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_plot420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_quality420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_rapid420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_reg420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_saliency420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_shape420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_stereo420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_stitching420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_structured_light420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_superres420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_surface_matching420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_text420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_tracking420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_video420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_videoio420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_videostab420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_xfeatures2d420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_ximgproc420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_xobjdetect420.dll.a" />
+					<Add library="C:/opencv/myBUILD/install/x64/mingw/lib/libopencv_xphoto420.dll.a" />
+					<Add library="tesseract" />
+					<Add library="leptonica" />
+					<Add library="png" />
+					<Add library="zlib" />
+					<Add library="archive" />
+					<Add library="curl" />
+					<Add library="gif" />
+					<Add library="openjp2" />
+					<Add library="tiff" />
+					<Add library="webp" />
+					<Add library="jpeg" />
+					<Add library="bz2" />
+					<Add library="lz4" />
+					<Add library="lzma" />
+					<Add library="zstd" />
+					<Add library="ssl" />
+					<Add library="crypto" />
+					<Add library="crypt32" />
+					<Add library="secur32" />
+					<Add library="sharpyuv" />
+					<Add library="ws2_32" />
+					<Add directory="C:/opencv/myBUILD/install/x64/mingw/lib" />
+					<Add directory="C:/Users/carlo/vcpkg/installed/x64-mingw-static/lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/NutritionalClassifier" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="ia0522FinalProject.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
