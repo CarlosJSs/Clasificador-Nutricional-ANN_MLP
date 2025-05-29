@@ -1,24 +1,22 @@
 # depslib dependency file v1.0
-1748207018 source:c:\users\carlo\desktop\inteligencia artificial\nutritionalclassifier\ia0522finalproject.cpp
+1748496911 source:c:\users\carlo\desktop\inteligencia artificial\nutritionalclassifier\ia0522finalproject.cpp
 	<iostream>
 	<fstream>
+	<sstream>
+	<string>
+	<vector>
+	<map>
+	<regex>
+	<algorithm>
 	<opencv2/core.hpp>
-	<opencv2/ml.hpp>
-	<stdio.h>
-	<wchar.h>
-	<locale.h>
-	<stdlib.h>
-	<windows.h>
-	<tesseract/baseapi.h>
-	<leptonica/allheaders.h>
 	<opencv2/highgui.hpp>
 	<opencv2/imgproc.hpp>
+	<opencv2/ml.hpp>
 	<opencv2/opencv.hpp>
-	<regex>
-	<string>
-	<sstream>
-	<map>
-	<algorithm>
+	<tesseract/baseapi.h>
+	<leptonica/allheaders.h>
+	<locale.h>
+	<windows.h>
 
 1567750099 c:\opencv\mybuild\install\include\opencv2\core.hpp
 	"opencv2/core/cvdef.h"

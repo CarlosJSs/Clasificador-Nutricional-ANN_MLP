@@ -32,7 +32,7 @@ int syFeatureAndLabelMatrix_Split(const Mat &fullFeatureMat, Mat &trainMat, Mat 
 int syANN_MLP_Train_and_Test(int nClasses, const Mat &trainMat, const Mat &trainLabelsMat, const Mat &testMat, const Mat &testLabelsMat, Mat &confusion);
 
 // Funciones para el OCR
-map<string, float> extraerValoresNutricionales(const string& rutaImagen);
+map<string, float> extraerValoresNutricionales(const string& rutaImagen, bool mostrarFases);
 string limpiarTextoOCR(const string& texto);
 
 // Menu principal
@@ -56,8 +56,8 @@ int main(){
 
         switch(opcion){
             case 1: {
-                string carpetaBase = "dbCategorias";
-                string archivoSalida = "dataset_generado.csv";
+                string carpetaBase = "dbCategoriasTest";
+                string archivoSalida = "dataset_generadoTest.csv";
 
                 // Intentamos crear el csv de caracteristicas
                 ofstream archivoCSV(archivoSalida);
@@ -69,7 +69,7 @@ int main(){
                 // Escribir encabezados en el csv
                 archivoCSV << "proteina,grasas_totales,grasas_trans,hidratos_disp,azucares,azucares_añadidos,fibra,sodio,categoria\n";
 
-                vector<string> extensiones = { ".jpg", ".png", ".jpeg", ".bmp" };
+                vector<string> extensiones = { ".jpg", ".png", ".jpeg", ".bmp", ".heic" };
 
                 // Recorremos las carpetas de las categorias (0 - 4)
                 for (int cat = 0; cat <= 4; cat++) {
@@ -86,7 +86,7 @@ int main(){
                         }
 
                         cout << "\nProcesando: " << rutaImg << endl;
-                        map<string, float> datos = extraerValoresNutricionales(rutaImg);
+                        map<string, float> datos = extraerValoresNutricionales(rutaImg, false);
 
                         if (datos.empty()) {
                             cout << "\t No se extrajo informacion, se omite.\n";
@@ -186,7 +186,7 @@ int main(){
                 cin >> rutaImagen;
 
                 // Obtenemos los datos de la imagen (OCR)
-                auto datos = extraerValoresNutricionales(rutaImagen);
+                auto datos = extraerValoresNutricionales(rutaImagen, true);
 
                 if (datos.empty()) {
                     cout << "\t\tNo se pudo obtener informacion valida de la imagen.\n";
@@ -217,6 +217,7 @@ int main(){
                     default: cout << "Desconocida"; break;
                 }
                 cout << endl;
+                destroyAllWindows();
                 break;
             }
             case 4: {
@@ -450,7 +451,7 @@ int syANN_MLP_Train_and_Test(int nClasses, const Mat &trainMat, const Mat &train
 
 // Funciones para el OCR
 //      Preprocesar imagen y extraer texto usando Tesseract OCR
-map<string, float> extraerValoresNutricionales(const string& rutaImagen) {
+map<string, float> extraerValoresNutricionales(const string& rutaImagen, bool mostrarFases) {
     // Obtenemos la imagen y la guardanmos en una matriz
     Mat imagen = imread(rutaImagen);
     if (imagen.empty()) {
@@ -458,18 +459,42 @@ map<string, float> extraerValoresNutricionales(const string& rutaImagen) {
         return {};
     }
 
-    // Convertimos a escala de grises y aplicamos el CLAHE
-    Mat gris;
+    Mat gris, clahe_out, binaria, binaria_resized;
+
+    // Imagen original
+    if (mostrarFases) {
+        imshow("Fase 0 - Imagen original", imagen);
+        waitKey(0);
+    }
+
+    // Escala de grises
     cvtColor(imagen, gris, COLOR_BGR2GRAY);
+    if (mostrarFases) {
+        imshow("Fase 1 - Escala de grises", gris);
+        waitKey(0);
+    }
+
+    // CLAHE
     Ptr<CLAHE> clahe = createCLAHE(2.0, Size(8, 8));
-    clahe->apply(gris, gris);
+    clahe->apply(gris, clahe_out);
+    if (mostrarFases) {
+        imshow("Fase 2 - CLAHE", clahe_out);
+        waitKey(0);
+    }
 
-    // Binarizamos la imagen
-    Mat binaria;
-    threshold(gris, binaria, 0, 255, THRESH_BINARY_INV + THRESH_OTSU);
+    // Binarización con OTSU
+    threshold(clahe_out, binaria, 0, 255, THRESH_BINARY_INV + THRESH_OTSU);
+    if (mostrarFases) {
+        imshow("Fase 3 - Binarización", binaria);
+        waitKey(0);
+    }
 
-    // Cambiamos dimensiones para un mejor OCR
-    resize(binaria, binaria, Size(), 2.5, 2.5, INTER_LINEAR);
+    // Redimensionado
+    resize(binaria, binaria_resized, Size(), 2.5, 2.5, INTER_LINEAR);
+    if (mostrarFases) {
+        imshow("Fase 4 - Imagen redimensionada", binaria_resized);
+        waitKey(0);
+    }
 
     // Inicializacion del OCR
     tesseract::TessBaseAPI ocr;
@@ -482,7 +507,7 @@ map<string, float> extraerValoresNutricionales(const string& rutaImagen) {
     ocr.SetVariable("tessedit_char_whitelist", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789áéíóúÁÉÍÓÚñÑ .,:gmgkcal");
 
     // Aplicamos el OCR
-    ocr.SetImage(binaria.data, binaria.cols, binaria.rows, 1, binaria.step);
+    ocr.SetImage(binaria_resized.data, binaria_resized.cols, binaria_resized.rows, 1, binaria_resized.step);
     string textoOCR = ocr.GetUTF8Text();
 
     // Limpiamos el resultado
